@@ -5,7 +5,8 @@
 // import CaseStudies from '../component/CaseStudies';
 // import Navbar from '../component/Navbar';
 
-import ApiCunsumer from "../component/ApiCunsumer"
+// import ApiCunsumer from "../component/ApiCunsumer"
+import ChatInterface from "../component/ChatInterface"
 
 function Home() {
   return (
@@ -15,8 +16,8 @@ function Home() {
         <ServicePartner />
         <CaseStudies />
         <Bootstrap5/> */}
-        <ApiCunsumer/>
-      
+        {/* <ApiCunsumer/> */}
+      <ChatInterface/>
     </div>
   )
 }
