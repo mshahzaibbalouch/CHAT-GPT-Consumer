@@ -6,7 +6,9 @@ function ApiConsumer() {
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState('');
     const [error, setError] = useState('');
- 
+    const [history, setHistory] = useState([]);
+    const [questionHistory, setQuestionHistory] = useState([]);
+
     const handleInputChange = (event) => {
         setPrompt(event.target.value);
     };
@@ -27,6 +29,8 @@ function ApiConsumer() {
                 }
                 setResponse('');
             });
+        history.unshift(response);
+        questionHistory.unshift(questionHistory,prompt);
         setQuestion(prompt);
         setPrompt('');
     };
@@ -35,6 +39,20 @@ function ApiConsumer() {
         <div className="container mt-5">
 
             <div className="d-flex">
+                <div className="history w-25 h-50">
+                    <div className="new-chat">New Chat</div>
+                    <div className="ul-history">
+                        <div className='td-none'>
+                            {
+                                questionHistory.map((item) => {
+                                    return (
+                                        <div>{item}</div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                </div>
                 <div className="form w-75">
                     <form onSubmit={handleSubmit}>
                         <div className="input-group mb-3">
@@ -51,7 +69,13 @@ function ApiConsumer() {
                         </div>
                     </form>
                     <div className="req">{question}</div>
-                    <div className="req">{response}</div>
+                    {response && <div className="response">{
+                        history.map((item)=>{
+                            return(
+                                <div className="">{item}</div>
+                            )
+                        })
+                    }</div>}
                     {error && <div className="error">{error}</div>}
                 </div>
             </div>
